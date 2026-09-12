@@ -430,7 +430,7 @@ a {
 
 .about-phone {
   position: absolute;
-  top: 51px;
+  top: 11px;
   left: 858px;
   width: 828px;
   height: 1110px;
@@ -472,6 +472,16 @@ a {
   font-weight: 400;
   text-transform: uppercase;
   color: #000;
+}
+
+.works-arrow {
+  position: absolute;
+  top: -180px;
+  left: 741px;
+  width: 259px;
+  height: 288px;
+  pointer-events: none;
+  z-index: 6;
 }
 
 .works-list {

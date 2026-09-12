@@ -69,10 +69,6 @@ html {
   scroll-behavior: smooth;
   min-height: 100%;
   background-color: var(--bg);
-  background-image: url("../assets/images/checkerboard-tile.svg");
-  background-repeat: repeat;
-  background-position: 0 0;
-  background-size: 160px 160px;
 }
 
 body {
@@ -105,7 +101,11 @@ a {
   width: 1400px;
   height: 5522px;
   margin: 0 auto;
-  background: none;
+  background-color: var(--bg);
+  background-image: url("../assets/images/checkerboard-tile.svg");
+  background-repeat: repeat;
+  background-position: 0 0;
+  background-size: 160px 160px;
   overflow: visible;
 }
 
@@ -334,7 +334,7 @@ a {
   left: 50%;
   display: flex;
   align-items: center;
-  width: calc(max(1400px, 100vw) + 120px);
+  width: 1520px;
   height: 93px;
   padding: 0;
   background: var(--pink);

@@ -6,7 +6,7 @@
     const scale = Math.min(1, width / 1400);
     artboard.style.transformOrigin = "top center";
     artboard.style.transform = "scale(" + scale + ")";
-    artboard.style.marginBottom = 4924 * (scale - 1) + "px";
+    artboard.style.marginBottom = 5522 * (scale - 1) + "px";
   }
 
   fit();

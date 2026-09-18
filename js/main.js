@@ -1,7 +1,14 @@
 (function () {
   const artboard = document.querySelector(".artboard");
 
+  const mobileMq = window.matchMedia("(max-width: 860px)");
+
   function fit() {
+    if (mobileMq.matches) {
+      artboard.style.transform = "none";
+      artboard.style.marginBottom = "0px";
+      return;
+    }
     const width = document.documentElement.clientWidth;
     const scale = width / 1400;
     const height = artboard.offsetHeight;
@@ -12,6 +19,11 @@
 
   fit();
   window.addEventListener("resize", fit);
+  if (mobileMq.addEventListener) {
+    mobileMq.addEventListener("change", fit);
+  } else {
+    mobileMq.addListener(fit);
+  }
 
   const scrollReveals = document.querySelectorAll(".reveal-on-scroll");
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {

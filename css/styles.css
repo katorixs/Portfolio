@@ -272,6 +272,10 @@ a {
   white-space: nowrap;
 }
 
+.hero-mobile {
+  display: none;
+}
+
 .reveal {
   animation: reveal-up 0.55s var(--ease-quick) both;
   animation-delay: var(--d, 0s);
@@ -499,6 +503,10 @@ a {
   font-weight: 400;
   text-transform: uppercase;
   color: #ccc6be;
+}
+
+.contacts-kicker-mobile {
+  display: none;
 }
 
 .works-title {
@@ -906,90 +914,142 @@ a {
 
   .hero {
     width: 100%;
-    height: auto;
-    min-height: min(100svh, 820px);
-    display: flex;
-    flex-direction: column;
-    padding: max(22px, env(safe-area-inset-top)) 20px 30px;
+    height: 834px;
+    min-height: 834px;
+    display: block;
+    padding: 0;
   }
 
   .nav {
-    position: relative;
-    top: auto;
+    position: absolute;
+    top: max(24px, env(safe-area-inset-top));
+    left: 24px;
+    right: 24px;
     padding: 0;
   }
 
   .nav a {
-    min-height: 44px;
+    min-height: 32px;
     display: inline-flex;
-    align-items: flex-start;
-    padding-top: 2px;
-    font-size: 12px;
-    line-height: 1.15;
-  }
-
-  .hero-title {
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    height: auto;
-    flex: 1 1 auto;
     align-items: center;
-    font-size: clamp(66px, 19vw, 82px);
-    line-height: 0.82;
-    padding: 54px 0 32px;
-  }
-
-  .hero-ui {
-    width: min(190px, 48vw);
-    height: auto;
-  }
-
-  .hero-bottom {
-    position: relative;
-    left: auto;
-    right: auto;
-    bottom: auto;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 22px;
-  }
-
-  .hero-lead {
-    white-space: normal;
+    padding: 0;
     font-size: 16px;
-    line-height: 22px;
+    line-height: 1;
   }
 
-  .hero-arrow-wrap {
+  .hero-title,
+  .hero-bottom {
     display: none;
   }
 
-  .hero-works {
-    width: min(74vw, 286px);
-    height: 88px;
-    margin: 0;
-    align-self: flex-end;
+  .hero-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-top: 227px;
   }
 
-  .hero-ellipse {
+  .hero-mobile-title {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 172px;
+    margin: 0;
+    color: #000;
+    font-family: var(--display);
+    font-size: 128px;
+    font-weight: 400;
+    line-height: 86px;
+    letter-spacing: -0.04em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .hero-mobile-title > span {
+    display: block;
+    height: 86px;
+    white-space: nowrap;
+  }
+
+  .hero-mobile-ui {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 180px;
+    height: 63px;
+    max-width: none;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-mobile-lead {
+    width: 230px;
+    margin-top: 80px;
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .hero-mobile-arrow {
+    width: 111px;
+    height: 155px;
+    margin-top: 36px;
+    max-width: none;
+  }
+
+  .hero-mobile-works {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 242px;
+    height: 64px;
+    margin-top: 36px;
+  }
+
+  .hero-mobile-works img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
+    max-width: none;
+    transform-origin: center;
+    transition: transform 0.45s var(--ease-quick);
   }
 
-  .hero-works span {
-    font-size: 21px;
+  .hero-mobile-works span {
+    position: relative;
+    z-index: 1;
+    font-family: var(--sans);
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 500;
+    text-transform: lowercase;
+    white-space: nowrap;
+  }
+
+  .hero-mobile-works:focus-visible img,
+  .hero-mobile-works:active img {
+    transform: rotate(-5deg);
   }
 
   .about-block {
-    margin-top: 46px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
   }
 
   .about-marquee {
+    order: 1;
     width: 100%;
     overflow: hidden;
     padding: 5px 0;
+    transform: translateY(48px);
   }
 
   .about-marquee-bar {
@@ -1006,9 +1066,10 @@ a {
   }
 
   .about-copy {
+    order: 3;
     width: auto;
-    margin: 42px 12px 0;
-    text-align: center;
+    margin: -133px 12px 0;
+    text-align: left;
   }
 
   .about-hello {
@@ -1017,7 +1078,7 @@ a {
   }
 
   .about-bio {
-    margin-top: 30px;
+    margin-top: 48px;
     width: 100%;
     height: auto;
     overflow: visible;
@@ -1029,7 +1090,7 @@ a {
     justify-content: space-between;
     gap: 12px;
     width: min(100%, 310px);
-    margin: 32px auto 0;
+    margin: 24px auto 0;
   }
 
   .about-tools img {
@@ -1038,6 +1099,7 @@ a {
   }
 
   .about-phone {
+    order: 2;
     position: relative;
     top: auto;
     left: auto;
@@ -1061,9 +1123,9 @@ a {
   }
 
   .works {
-    margin-top: -145px;
+    margin-top: 96px;
     padding: 0 20px;
-    z-index: 8;
+    z-index: 5;
   }
 
   .works-kicker,
@@ -1204,7 +1266,19 @@ a {
 
   .contacts {
     margin-top: 100px;
-    padding: 0 20px calc(48px + env(safe-area-inset-bottom));
+    padding: 0 12px calc(48px + env(safe-area-inset-bottom));
+  }
+
+  .contacts-kicker {
+    text-align: center;
+  }
+
+  .contacts-kicker-desktop {
+    display: none;
+  }
+
+  .contacts-kicker-mobile {
+    display: inline;
   }
 
   .contacts-stage,
@@ -1213,33 +1287,46 @@ a {
   }
 
   .contacts-stage {
-    margin-top: 24px;
+    margin-top: 16px;
   }
 
   .contacts-title,
   .contacts-reflection {
-    font-size: clamp(52px, 14.5vw, 62px);
+    font-size: 64px;
+    line-height: 0.699em;
+    letter-spacing: -0.03em;
   }
 
   .contacts-card {
-    height: auto;
-    min-height: 300px;
-    padding: 60px 20px 42px;
-    border-radius: 26px;
+    width: 100%;
+    max-width: 406px;
+    height: 256px;
+    min-height: 256px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 60px 0;
+    border-radius: 44px;
+    justify-content: flex-start;
+  }
+
+  .contacts-copy {
+    width: 100%;
   }
 
   .contacts-thanks {
-    width: 100%;
-    font-size: clamp(42px, 11.5vw, 50px);
-    line-height: 1.04;
+    width: 282px;
+    height: 68px;
+    font-size: 40px;
+    line-height: 34px;
+    letter-spacing: -0.03em;
   }
 
   .contacts-note {
-    width: 100%;
-    height: auto;
-    margin-top: 28px;
-    font-size: 16px;
-    line-height: 1.4;
+    width: min(329px, calc(100% - 16px));
+    height: 36px;
+    margin-top: 32px;
+    font-size: 14px;
+    line-height: 18px;
   }
 
   .contacts-links {
@@ -1250,7 +1337,7 @@ a {
     min-height: 44px;
     display: flex;
     align-items: center;
-    font-size: clamp(15px, 4.2vw, 18px);
+    font-size: 20px;
     line-height: 1.3;
     text-align: center;
     overflow-wrap: anywhere;
@@ -1258,7 +1345,7 @@ a {
   }
 
   .contacts-socials {
-    margin-top: 14px;
+    margin-top: 12px;
     gap: 10px;
   }
 
@@ -1299,8 +1386,8 @@ a {
   }
 
   .hero {
-    padding-right: var(--mobile-gutter);
-    padding-left: var(--mobile-gutter);
+    padding-right: 0;
+    padding-left: 0;
   }
 
   .about-copy {
@@ -1314,8 +1401,13 @@ a {
     padding-left: var(--mobile-gutter);
   }
 
+  .contacts {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
   .nav a {
-    font-size: 11px;
+    font-size: 16px;
   }
 
   .hero-title {
@@ -1329,13 +1421,14 @@ a {
 
 @media (min-width: 600px) and (max-width: 860px) {
   .hero {
-    min-height: 760px;
-    padding-right: 40px;
-    padding-left: 40px;
+    height: 834px;
+    min-height: 834px;
+    padding-right: 0;
+    padding-left: 0;
   }
 
   .nav a {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .hero-title {
@@ -1368,8 +1461,7 @@ a {
     margin-left: auto;
   }
 
-  .works,
-  .contacts {
+  .works {
     padding-right: 40px;
     padding-left: 40px;
   }
@@ -1423,12 +1515,4 @@ a {
     justify-content: flex-end;
   }
 
-  .contacts-title,
-  .contacts-reflection {
-    font-size: clamp(76px, 11vw, 94px);
-  }
-
-  .contacts-card {
-    min-height: 360px;
-  }
 }

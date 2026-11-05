@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Вариант обложки — Додо Пицца</title>
+  <style>
+    @font-face{font-family:Rooftop;src:url('../../assets/rooftop-bold.otf') format('opentype');font-weight:700}
+    *{box-sizing:border-box}
+    body{margin:0;background:#fff;color:#191919;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif}
+    a{color:inherit;text-decoration:none}
+    .page{max-width:1280px;margin:0 auto;padding:32px 30px 100px}
+    .header{display:flex;align-items:center;justify-content:space-between;height:46px;font-size:16px}
+    .back{display:inline-flex;align-items:center;gap:8px}
+    .back img{width:24px;height:24px;filter:brightness(0)}
+    .cover{position:relative;min-height:650px;margin-top:42px;border-radius:20px;background:linear-gradient(180deg,#ff6400 0%,#ffb180 100%);overflow:hidden}
+    .title{position:absolute;z-index:1;left:8%;top:31%;margin:0;color:#fff;font:700 clamp(88px,11vw,145px)/.84 Rooftop,sans-serif;letter-spacing:-.05em}
+    .title span{display:block;padding-left:12%}
+    .logo{position:absolute;z-index:2;left:47%;top:31%;width:108px;height:108px}
+    .phone{position:absolute;z-index:3;left:47.5%;top:-3%;width:56%;height:auto;display:block}
+    .description{max-width:900px;margin:100px auto 0}
+    .description h1{margin:0 0 32px;font-size:48px;line-height:1.15;font-weight:500;text-transform:uppercase}
+    .description p{max-width:670px;margin:0;color:#5c5c5c;font-size:20px;line-height:1.3}
+    @media(max-width:700px){
+      .page{padding:16px 16px 70px}
+      .header{height:36px;font-size:14px}
+      .header .author{font-size:12px}
+      .cover{min-height:510px;margin-top:22px;border-radius:12px}
+      .title{left:8%;top:9%;font-size:clamp(62px,16vw,105px)}
+      .logo{left:65%;top:11%;width:58px;height:58px}
+      .phone{left:15%;top:28%;width:78%}
+      .description{margin-top:64px}
+      .description h1{font-size:30px;margin-bottom:20px}
+      .description p{font-size:18px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <a class="back" href="index.html"><img src="../../assets/figma-3de1a.svg" alt="">Назад к кейсу</a>
+      <span class="author">Екатерина Жиркова</span>
+    </header>
+    <div class="cover" aria-label="Обложка проекта Додо Пицца">
+      <div class="title">Додо<span>Пицца</span></div>
+      <img class="logo" src="../../assets/figma-0a785.png" alt="">
+      <img class="phone" src="../../assets/figma-60058.png" alt="Экран приложения Додо Пицца">
+    </div>
+    <section class="description">
+      <h1>Описание проекта</h1>
+      <p>Учебный проект по разработке фичи совместного заказа в приложении доставки еды Додо Пицца, которая позволяет создавать общую корзину, приглашать друзей, добавлять товары каждому участнику и выбирать удобный способ оплаты — за всех или каждый за себя.</p>
+    </section>
+  </main>
+</body>
+</html>

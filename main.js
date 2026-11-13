@@ -4,9 +4,9 @@ const A=isProject?'../../assets/':'assets/';
 const homeUrl='../../index.html';
 const projectUrl='projects/project-1/index.html';
 const app=document.getElementById('app');
-const contacts=`<nav class="contacts"><a href="${A}ekaterina-zhirkova-resume.pdf" target="_blank" rel="noopener noreferrer">CV</a><a href="https://t.me/eekaterinass" target="_blank" rel="noopener noreferrer">Telegram</a><a href="mailto:zhirkovakatya190517@yandex.ru">zhirkovakatya190517@yandex.ru</a></nav>`;
+const contacts=`<nav class="contacts"><a href="${A}ekaterina-zhirkova-resume.pdf" target="_blank" rel="noopener noreferrer">CV</a><a href="https://t.me/eekaterinass" target="_blank" rel="noopener noreferrer">Telegram</a><button class="email-copy" type="button" aria-label="Скопировать адрес электронной почты"><span class="email-address">zhirkovakatya190517@yandex.ru</span><span class="copy-pill" aria-hidden="true">Copy</span></button></nav>`;
 const hero=`<div class="hero-art"><div class="hero-word">Додо<br><span>Пицца</span></div><div class="hero-phone"><img src="${A}figma-60058.png" alt="Экран приложения Додо Пицца"></div><img class="hero-icon" src="${A}figma-0a785.png" alt=""></div>`;
-function home(){document.title='Екатерина Жиркова — продуктовый дизайнер';app.innerHTML=`<main class="home"><header class="home-header"><button class="avatar-trigger" type="button" aria-label="Увеличить фотографию Екатерины Жирковой"><img class="avatar" src="${A}figma-5faa8.png" alt=""></button><span class="name">Екатерина Жиркова</span><span class="availability"><img src="${A}figma-12f7d.svg" alt="">Открыта к сотрудничеству</span>${contacts}</header><div class="intro"><span>Привет! Я дизайнер интерфейсов. Мне интересно иссле</span>довать пользовательские проблемы, разбираться в задачах бизнеса <br>и находить решения, которые <br>делают продукт удобнее.</div><a class="home-card" href="${projectUrl}" aria-label="Открыть проект Додо Пицца">${hero}</a><div class="card-caption"><a class="case-caption-link" href="${projectUrl}" aria-label="Открыть кейс Додо Пицца"><span class="case-caption-title">Додо Пицца</span><span class="case-caption-arrow" aria-hidden="true">↗</span></a></div><footer class="home-footer"><p>Буду рада стать частью вашей команды!</p>${contacts}</footer></main>`}
+function home(){document.title='Екатерина Жиркова — дизайнер интерфейсов';app.innerHTML=`<main class="home home-v2"><header class="home-header"><span class="name">Екатерина Жиркова</span>${contacts}</header><button class="avatar-trigger home-portrait" type="button" aria-label="Увеличить фотографию Екатерины Жирковой"><img class="portrait-orbit portrait-orbit-back" src="${A}home-81-orbit-back.svg" alt=""><img class="portrait-face" src="${A}home-81-portrait.png" alt=""><img class="portrait-orbit portrait-orbit-front" src="${A}home-81-orbit-front.svg" alt=""><span class="portrait-face-front"><img src="${A}home-81-portrait.png" alt=""></span></button><button class="home-star-trigger" type="button" aria-label="Обо мне: учёба в РТУ МИРЭА" aria-describedby="home-star-hint"><img class="star-rest" src="${A}home-81-stars.svg" alt=""><img class="star-hover" src="${A}home-86-star-hover.svg" alt=""></button><div class="home-star-hint" id="home-star-hint" role="tooltip"><span class="home-star-hint-title">Учусь в РТУ МИРЭА на 4 курсе <img src="${A}home-86-hint-icon.png" alt=""></span><span class="home-star-hint-detail">Специальность: “Информационные системы и технологии”</span></div><button class="home-star-trigger home-star-trigger--tech" type="button" aria-label="Обо мне: дизайн с технической базой" aria-describedby="home-star-hint-tech"><img class="star-rest" src="${A}home-81-stars.svg" alt=""><img class="star-hover" src="${A}home-86-star-hover.svg" alt=""></button><div class="home-star-hint home-star-hint--tech" id="home-star-hint-tech" role="tooltip"><span class="home-star-hint-title">Дизайн с технической базой <img src="${A}home-86-hint-tech.png" alt=""></span><span class="home-star-hint-detail">Изучала HTML и CSS в РТУ МИРЭА: знакома с основами веб-вёрстки</span></div><button class="home-star-trigger home-star-trigger--english" type="button" aria-label="Обо мне: английский язык" aria-describedby="home-star-hint-english"><img class="star-rest" src="${A}home-81-stars.svg" alt=""><img class="star-hover" src="${A}home-86-star-hover.svg" alt=""></button><div class="home-star-hint home-star-hint--english" id="home-star-hint-english" role="tooltip"><span class="home-star-hint-title">Изучаю английский язык <img src="${A}home-86-hint-english.png" alt=""></span><span class="home-star-hint-detail">Учу английский с детства и практикую в Duolingo 60 дней подряд</span></div><div class="intro">Привет! <img class="intro-hand" src="${A}home-78-2ac5d.svg" alt=""> Я дизайнер интерфейсов.<br> Мне интересно исследовать пользовательские проблемы, разбираться в задачах бизнеса и находить решения, которые делают продукт удобнее.</div><h2 class="cases-heading">Мои кейсы</h2><a class="home-card" href="${projectUrl}" aria-label="Открыть проект Додо Пицца"><div class="home-v2-art"><img class="home-v2-glow" src="${A}home-81-card-glow.svg" alt=""><img class="home-v2-phone" src="${A}home-78-451ad.png" alt="Экран приложения Додо Пицца"><img class="home-v2-hover-phone home-v2-hover-phone--one" src="${A}home-card-hover-1.png" alt="" aria-hidden="true"><img class="home-v2-hover-phone home-v2-hover-phone--two" src="${A}home-card-hover-2.png" alt="" aria-hidden="true"></div></a><div class="card-caption"><a class="case-caption-link" href="${projectUrl}" aria-label="Открыть кейс Додо Пицца"><span class="case-caption-leading"><img class="case-caption-icon" src="${A}home-78-0a785.png" alt=""><span class="case-caption-copy"><span class="case-caption-title">Додо Пицца</span><span class="case-caption-subtitle">case study, 2026</span></span></span><img class="case-caption-arrow-icon" src="${A}home-78-7f753.svg" alt=""></a><img class="case-caption-line" src="${A}home-78-af610.svg" alt=""></div><footer class="home-footer"><p>Буду рада стать частью вашей команды! <a class="footer-bubble" href="mailto:zhirkovakatya190517@yandex.ru" aria-label="Написать Екатерине Жирковой по электронной почте"><img src="${A}home-81-footer-bubble.svg" alt=""></a></p></footer></main><div class="home-compact-header" aria-hidden="true" inert><button class="compact-avatar" type="button" aria-label="Увеличить фотографию Екатерины Жирковой"><img src="${A}home-81-portrait.png" alt=""></button><span class="compact-name">Екатерина Жиркова</span>${contacts}</div>`}
 function initHomeTextMotion(){
   const intro=document.querySelector('.home .intro');
   const footer=document.querySelector('.home-footer');
@@ -14,7 +14,8 @@ function initHomeTextMotion(){
   const lines=[''];
   for(const node of [...intro.childNodes]){
     if(node.nodeName==='BR')lines.push('');
-    else lines[lines.length-1]+=node.textContent;
+    else if(node.nodeType===Node.TEXT_NODE)lines[lines.length-1]+=node.textContent;
+    else if(node.classList?.contains('intro-hand'))lines[lines.length-1]+='\uFFFC';
   }
   intro.setAttribute('role','text');
   intro.setAttribute('aria-label',originalText);
@@ -23,6 +24,7 @@ function initHomeTextMotion(){
   lines.forEach((line,lineIndex)=>{
     if(lineIndex)fragment.append(document.createElement('br'));
     for(const token of line.match(/\S+|\s+/gu)||[]){
+      if(token==='\uFFFC'){const hand=document.createElement('img');hand.className='intro-hand';hand.src=`${A}home-78-2ac5d.svg`;hand.alt='';hand.setAttribute('aria-hidden','true');fragment.append(hand);continue}
       if(/^\s+$/u.test(token)){fragment.append(document.createTextNode(token));continue}
       const word=document.createElement('span');
       word.className='intro-word';
@@ -38,42 +40,48 @@ function initHomeTextMotion(){
     }
   });
   intro.replaceChildren(fragment);
-  const layoutHome=()=>{
-    const homePage=document.querySelector('.home');
-    const card=document.querySelector('.home-card');
-    const caption=document.querySelector('.card-caption');
-    if(window.innerWidth<1280){
-      homePage.style.height='';
-      homePage.style.marginBottom='';
-      card.style.top='';
-      caption.style.top='';
-      footer.style.top='';
-      return;
-    }
-    const delta=intro.offsetHeight-348;
-    homePage.style.height=`${1805+delta}px`;
-    card.style.top=`${698+delta}px`;
-    caption.style.top=`${1373+delta}px`;
-    footer.style.top=`${1567+delta}px`;
-    homePage.style.marginBottom='';
-  };
+  const layoutHome=()=>{};
   layoutHome();
   document.fonts.ready.then(layoutHome);
   window.addEventListener('resize',layoutHome,{passive:true});
-  const fixedCount=[...intro.querySelectorAll('.intro-word')].slice(0,6).reduce((count,word)=>count+word.querySelectorAll('.intro-char').length,0);
+  const fixedCount=[...'Привет! Я дизайнер интерфейсов. Мне интересно иссле'].filter(c=>!(/\s/u.test(c))).length;
   const animatedCount=characters.length-fixedCount;
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
   app.insertAdjacentHTML('beforeend',`<div class="avatar-overlay" role="dialog" aria-modal="true" aria-label="Фотография Екатерины Жирковой" tabindex="-1" hidden><img class="avatar-portrait" src="${A}ekaterina-portrait.png" alt="Екатерина Жиркова"></div>`);
   const avatarTrigger=document.querySelector('.avatar-trigger');
+  app.insertAdjacentHTML('beforeend','<div class="portrait-cursor" aria-hidden="true" hidden>нажми</div>');
+  const portraitCursor=document.querySelector('.portrait-cursor');
+  const portraitImage=document.querySelector('.portrait-face');
+  const portraitHitMask=Uint8Array.from(atob('AAAAAAAAAAAAAAAADgAAAAAAAOB/AAAAAAAA/P8BAAAAAAD//wcAAAAAwP//DwAAAADg//8fAAAAAPD//z8AAAAA+P//fwAAAAD8////AAAAAP7///8AAAAA/////wEAAID/////AQAAgP////8DAADA/////wMAAMD/////BwAA4P////8HAADw/////wcAAPD/////DwAA8P////8PAAD4/////w8AAPj/////DwAA/P////8fAAD8/////x8AAPz/////HwAA/P////8fAAD+/////x8AAP7/////HwAA/v////8/AAD+/////z8AAP7/////PwAA/v////8/AAD+/////z8AAPz/////PwAA/P////9/AAD4/////38AAPj/////fwAA+P////9/AADw/////38AAPD/////fwAA8P////9/AADg/////38AAOD//////wAAwP//////AADA/////38AAMD/////fwAAwP////9/AADA/////38AAMD/////fwAAwP////9/AADA/////38AAMD/////PwAAwP////8/AADg/////z8AAOD/////PwAA8P8//v8fAADw/w///x8AAPj/B/z/DwAA+H8A/P8DAAD4HwDAHwAAALABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='),character=>character.charCodeAt(0));
+  const isPortraitPixel=event=>{
+    const bounds=portraitImage.getBoundingClientRect();
+    const x=(event.clientX-bounds.left)/bounds.width;
+    const y=(event.clientY-bounds.top)/bounds.height;
+    if(x<0||x>=1||y<0||y>=1)return false;
+    const index=Math.floor(y*64)*64+Math.floor(x*64);
+    return !!(portraitHitMask[index>>3]&(1<<(index&7)));
+  };
+  const movePortraitCursor=event=>{
+    if(event.pointerType!=='mouse')return;
+    const overHead=isPortraitPixel(event);
+    avatarTrigger.style.cursor=overHead?'none':'default';
+    portraitCursor.hidden=!overHead;
+    if(overHead)portraitCursor.style.transform=`translate3d(${event.clientX}px,${event.clientY}px,0) translate(-50%,-50%)`;
+  };
+  avatarTrigger.addEventListener('pointermove',movePortraitCursor);
+  avatarTrigger.addEventListener('pointerleave',()=>{portraitCursor.hidden=true;avatarTrigger.style.cursor='default'});
+  const compactHeader=document.querySelector('.home-compact-header');
+  const compactAvatar=compactHeader.querySelector('.compact-avatar');
   const avatarOverlay=document.querySelector('.avatar-overlay');
   const avatarPortrait=avatarOverlay.querySelector('.avatar-portrait');
   let avatarClosing=false;
+  let avatarReturnFocus=avatarTrigger;
   const finishAvatarClose=()=>{
     avatarOverlay.hidden=true;
     avatarOverlay.classList.remove('is-opening','is-closing');
     document.body.classList.remove('avatar-open');
     avatarClosing=false;
-    avatarTrigger.focus();
+    avatarReturnFocus.focus();
   };
   const closeAvatar=()=>{
     if(avatarOverlay.hidden||avatarClosing)return;
@@ -84,13 +92,16 @@ function initHomeTextMotion(){
   avatarPortrait.addEventListener('animationend',event=>{
     if(avatarClosing&&event.animationName==='avatar-photo-close')finishAvatarClose();
   });
-  avatarTrigger.addEventListener('click',()=>{
+  const openAvatar=trigger=>{
     if(!avatarOverlay.hidden)return;
+    avatarReturnFocus=trigger;
     avatarOverlay.hidden=false;
     avatarOverlay.classList.add('is-opening');
     document.body.classList.add('avatar-open');
     avatarOverlay.focus({preventScroll:true});
-  });
+  };
+  avatarTrigger.addEventListener('click',event=>{if(event.detail===0||isPortraitPixel(event)){portraitCursor.hidden=true;openAvatar(avatarTrigger)}});
+  compactAvatar.addEventListener('click',()=>openAvatar(compactAvatar));
   avatarOverlay.addEventListener('click',event=>{if(event.target===avatarOverlay)closeAvatar()});
   window.addEventListener('keydown',event=>{
     if(avatarOverlay.hidden)return;
@@ -102,20 +113,54 @@ function initHomeTextMotion(){
     frame=0;
     const rect=intro.getBoundingClientRect();
     const sectionTop=rect.top+window.scrollY;
-    const start=Math.max(0,sectionTop-window.innerHeight*.35);
-    const end=Math.max(start+1,sectionTop+rect.height*.2);
+    const start=Math.max(0,sectionTop-window.innerHeight*.9);
+    const end=start+Math.min(320,Math.max(180,rect.height*1.8));
     const noScroll=document.documentElement.scrollHeight<=window.innerHeight+1;
     const progress=reduced.matches?1:noScroll?0:Math.max(0,Math.min(1,(window.scrollY-start)/(end-start)));
     characters.forEach((letter,index)=>{
       const active=index<fixedCount?1:Math.max(0,Math.min(1,(progress-(index-fixedCount)/animatedCount)/.006));
-      const channel=Math.round(198-173*active);
-      letter.style.color=`rgb(${channel},${channel},${channel})`;
+      const red=Math.round(243-227*active);
+      const green=Math.round(243-243*active);
+      const blue=Math.round(243-229*active);
+      letter.style.color=`rgb(${red},${green},${blue})`;
     });
   };
   const schedule=()=>{if(!frame)frame=requestAnimationFrame(render)};
   window.addEventListener('scroll',schedule,{passive:true});
   window.addEventListener('resize',schedule,{passive:true});
+  let compactFrame=0;
+  const updateCompactHeader=()=>{
+    compactFrame=0;
+    const visible=window.scrollY>120;
+    compactHeader.classList.toggle('is-active',visible);
+    compactHeader.setAttribute('aria-hidden',String(!visible));
+    compactHeader.inert=!visible;
+  };
+  const scheduleCompactHeader=()=>{if(!compactFrame)compactFrame=requestAnimationFrame(updateCompactHeader)};
+  window.addEventListener('scroll',scheduleCompactHeader,{passive:true});
+  window.addEventListener('resize',scheduleCompactHeader,{passive:true});
+  updateCompactHeader();
   const card=document.querySelector('.home-card');
+  const hoverPhotos=[...card.querySelectorAll('.home-v2-hover-phone')];
+  let photoTimer=0;
+  const showPhoto=index=>{
+    card.classList.toggle('is-photo-preview',index>=0);
+    hoverPhotos.forEach((photo,photoIndex)=>photo.classList.toggle('is-active',photoIndex===index));
+  };
+  const startPreview=()=>{
+    if(!window.matchMedia('(hover: hover)').matches)return;
+    window.clearInterval(photoTimer);
+    showPhoto(0);
+    if(!reduced.matches){
+      let index=0;
+      photoTimer=window.setInterval(()=>{index=index===1?-1:index+1;showPhoto(index)},1400);
+    }
+  };
+  const stopPreview=()=>{window.clearInterval(photoTimer);showPhoto(-1)};
+  card.addEventListener('mouseenter',startPreview);
+  card.addEventListener('mouseleave',stopPreview);
+  card.addEventListener('focus',startPreview);
+  card.addEventListener('blur',stopPreview);
   const revealTargets=[document.querySelector('.home-header'),intro,card,document.querySelector('.card-caption'),footer];
   reduced.addEventListener('change',()=>{schedule();if(reduced.matches)revealTargets.forEach(element=>element.classList.add('is-visible'))});
   render();
@@ -123,9 +168,9 @@ function initHomeTextMotion(){
   else{
     const observer=new IntersectionObserver(entries=>{
       for(const entry of entries){
-        if(entry.intersectionRatio>=.35){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}
+        if(entry.intersectionRatio>=.2){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}
       }
-    },{threshold:.35,rootMargin:'0px 0px -8% 0px'});
+    },{threshold:.2,rootMargin:'0px 0px 0px 0px'});
     revealTargets.filter(element=>element!==intro&&element!==card).forEach(element=>observer.observe(element));
     const earlyObserver=new IntersectionObserver(entries=>{
       for(const entry of entries){
@@ -291,3 +336,25 @@ if(isProject){
     },{once:true});
   }
 }else {home();initHomeTextMotion()}
+document.addEventListener('click',async event=>{
+  const button=event.target.closest('.email-copy');
+  if(!button)return;
+  const address=button.querySelector('.email-address').textContent;
+  try{
+    if(navigator.clipboard?.writeText)await navigator.clipboard.writeText(address);
+    else{
+      const field=document.createElement('textarea');
+      field.value=address;field.style.position='fixed';field.style.opacity='0';
+      document.body.append(field);field.select();
+      const copied=document.execCommand('copy');
+      field.remove();
+      if(!copied)throw new Error('Copy failed');
+    }
+    button.classList.add('is-copied');
+    button.querySelector('.copy-pill').textContent='Copied!';
+    clearTimeout(button.copyTimer);
+    button.copyTimer=setTimeout(()=>{button.classList.remove('is-copied');button.querySelector('.copy-pill').textContent='Copy'},1800);
+  }catch(error){
+    location.href=`mailto:${address}`;
+  }
+});

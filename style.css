@@ -156,3 +156,10 @@ a[href],button{cursor:pointer}
   .home-card.is-scroll-active+.card-caption .case-caption-title{color:#191919}
   .home-card.is-scroll-active+.card-caption .case-caption-arrow{border-color:#ddd;background:none;color:#191919}
 }
+
+/* Email copy interaction, matching the reference hover behavior. */
+:is(.contacts,.mobile-project-footer nav) .email-copy{position:relative;display:inline-flex;align-items:center;min-width:0;padding:0;border:0;background:none;color:inherit;font:inherit;line-height:inherit;letter-spacing:inherit;text-align:left;white-space:nowrap;cursor:pointer;transition:color .22s ease}
+:is(.contacts,.mobile-project-footer nav) .email-copy:hover,:is(.contacts,.mobile-project-footer nav) .email-copy:focus-visible,:is(.contacts,.mobile-project-footer nav) .email-copy.is-copied{color:#fdd7f7}
+:is(.contacts,.mobile-project-footer nav) .email-copy .copy-pill{position:absolute;right:-9px;top:50%;z-index:1;padding:3px 8px;border-radius:999px;background:#fdd7f7;color:#10000e;font-size:11px;font-weight:600;line-height:15px;letter-spacing:0;opacity:0;transform:translate(4px,-35%) rotate(-8deg) scale(.7);pointer-events:none;box-shadow:0 2px 8px rgba(253,215,247,.32);transition:opacity .22s ease,transform .3s cubic-bezier(.22,1,.36,1)}
+:is(.contacts,.mobile-project-footer nav) .email-copy:hover .copy-pill,:is(.contacts,.mobile-project-footer nav) .email-copy:focus-visible .copy-pill,:is(.contacts,.mobile-project-footer nav) .email-copy.is-copied .copy-pill{opacity:1;transform:translate(0,-50%) rotate(-8deg) scale(1)}
+@media(prefers-reduced-motion:reduce){:is(.contacts,.mobile-project-footer nav) .email-copy,:is(.contacts,.mobile-project-footer nav) .email-copy .copy-pill{transition:none}}

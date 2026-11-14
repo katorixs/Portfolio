@@ -394,8 +394,18 @@
  .home-v2 .home-star-trigger:not(.is-open)+.home-star-hint{opacity:0;visibility:hidden;transform:translateY(8px)}
 }
 @media(min-width:1280px){
- .home.home-v2{--desktop-left-star-x:634.473px;--desktop-left-star-y:542.794px}
+ .home.home-v2{--desktop-left-star-x:637px;--desktop-left-star-y:535px;--desktop-tech-star-x:1186px;--desktop-tech-star-y:331px;--desktop-english-star-x:1136px;--desktop-english-star-y:526px;--desktop-star-size:40px}
  .home-v2 .home-star-trigger:not(.home-star-trigger--tech):not(.home-star-trigger--english){left:var(--desktop-left-star-x);top:var(--desktop-left-star-y)}
- .home-v2 .home-hover-cue{left:calc(var(--desktop-left-star-x) - 16.473px);top:calc(var(--desktop-left-star-y) + 18.206px);display:flex;align-items:center;justify-content:center;padding:2px 8px 4px;border-radius:300px;background:#ffa7f2;box-shadow:none;transform:none}
+ .home-v2 .home-star-trigger--tech{left:var(--desktop-tech-star-x);top:var(--desktop-tech-star-y)}
+ .home-v2 .home-star-trigger--english{left:var(--desktop-english-star-x);top:var(--desktop-english-star-y)}
+ .home-v2 .home-star-trigger,.home-v2 .home-star-trigger img{width:var(--desktop-star-size);height:var(--desktop-star-size)}
+ .home-v2 .home-hover-cue{left:calc(var(--desktop-left-star-x) + var(--desktop-star-size) + 1px);top:calc(var(--desktop-left-star-y) + 9px);display:flex;align-items:center;justify-content:center;padding:2px 8px 4px;border-radius:300px;background:#ffa7f2;box-shadow:none;transform:none}
  .home-v2 .home-hover-cue .desktop-cue-label{padding:0;background:none;color:#fff;font-size:12px;font-weight:600;line-height:15px;box-shadow:none}
+}
+
+/* Keep desktop info cards attached to their stars. */
+@media(min-width:1280px){
+ .home-v2 .home-star-hint:not(.home-star-hint--tech):not(.home-star-hint--english){left:var(--desktop-left-star-x);top:calc(var(--desktop-left-star-y) - 90px - 12px)}
+ .home-v2 .home-star-hint--tech{left:calc(var(--desktop-tech-star-x) + var(--desktop-star-size) - 354px);top:calc(var(--desktop-tech-star-y) + var(--desktop-star-size) + 12px)}
+ .home-v2 .home-star-hint--english{left:calc(var(--desktop-english-star-x) + var(--desktop-star-size) - 310px);top:calc(var(--desktop-english-star-y) + var(--desktop-star-size) + 12px)}
 }

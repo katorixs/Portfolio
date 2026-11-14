@@ -104,7 +104,7 @@ a[href],button{cursor:pointer}
 .home-card:focus-visible{outline:2px solid #191919;outline-offset:6px;border-radius:20px}
 @media(prefers-reduced-motion:reduce){.home-card .hero-art,.home-card .hero-phone{transition:none}.home-card:is(:hover,:focus-visible) .hero-art,.home-card:is(:hover,:focus-visible) .hero-phone{transform:none}}
 
-@media(max-width:1279px){
+@media(max-width:1199px){
   .home{display:flex;flex-direction:column;width:100%;height:auto!important;min-height:100dvh;margin:0 auto!important;padding:28px;overflow:visible;transform:none}
   .home-header{position:relative;inset:auto;display:grid;grid-template-columns:70px 1fr;align-items:center;column-gap:16px;row-gap:18px;height:auto}
   .avatar-trigger{position:relative;left:auto;top:auto;grid-column:1;grid-row:1}

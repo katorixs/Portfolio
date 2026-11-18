@@ -1,60 +1,52 @@
-// The 393 px Figma frame has a different composition from the desktop case.
-// Keep its markup separate so the desktop layout and its animations stay intact.
 (() => {
-  const asset = name => `../../assets/figma-${name}`;
-  const desktop = document.querySelector('.project');
+  const desktop = document.querySelector('.case129');
   if (!desktop) return;
-  const caseText = title => [...desktop.querySelectorAll('.case-text')]
-    .find(section => section.querySelector('h2')?.textContent.trim().toLowerCase() === title.toLowerCase())
-    ?.querySelector('p')?.textContent.trim() || '';
-  const facts = [...desktop.querySelectorAll('.project-fact')].map(fact => ({
-    title: fact.querySelector('h3').textContent,
-    body: fact.querySelector('p').textContent
-  }));
-  const picture = (name, extra = '') => `<img src="${asset(name)}" alt="" ${extra}>`;
-  const phones = (names, kind = '') => `<div class="mobile-phones ${kind}">${names.map(name => picture(name)).join('')}</div>`;
-  const shot = (kind, vector, names, callouts = '') => `<div class="mobile-shot ${kind}">${vector ? picture(vector, 'class="mobile-shot-vector"') : ''}${phones(names)}${callouts}</div>`;
-  const chipSection = (title, body, illustration) => `<section class="mobile-solution mobile-reveal"><h3 class="mobile-chip">${title}</h3><p>${body}</p>${illustration}</section>`;
+  const asset = name => name === '60058' ? '../../assets/figma-60058.png' : `../../assets/project1-${name}.webp`;
+  const vec = name => `../../assets/mobile144-${name}.svg`;
+  const img = (name, cls = '') => `<img class="${cls}" src="${asset(name)}" alt="">`;
+  const phones = (names, cls = '') => `<div class="m144-phones ${cls}">${names.map(name => img(name)).join('')}</div>`;
+  const decor = name => `<img class="m144-decor" src="${vec(name)}" alt="">`;
+  const card = (kind, content, vector = '') => `<div class="m144-shot m144-${kind}">${vector ? decor(vector) : ''}${content}</div>`;
+  const callout = (text, cls, arrow) => `<span class="m144-callout ${cls}">${text}</span><img class="m144-arrow ${cls}-arrow" src="${vec(arrow)}" alt="">`;
+  const sectionText = title => [...desktop.querySelectorAll('.case129-solution')].find(el => el.querySelector('.case129-chip')?.textContent.trim() === title)?.querySelector('p')?.innerHTML.trim() || '';
+  const solution = (title, content, body = sectionText(title)) => `<section class="m144-solution"><h3>${title}</h3><p>${body}</p>${content}</section>`;
+  const facts = [...desktop.querySelectorAll('.case129-fact')].map(el => `<div class="m144-fact"><h3>${el.querySelector('h3').textContent}</h3><p>${el.querySelector('p').textContent}</p></div>`).join('');
+  const survey = [...desktop.querySelectorAll('.case129-survey-grid>div')].map(el => `<div class="m144-stat"><strong>${el.querySelector('strong').textContent}</strong><div class="m144-bar"><i style="width:${el.querySelector('strong').textContent}"></i></div><span>${el.querySelector('span').textContent}</span></div>`).join('');
   const mobile = document.createElement('main');
-  mobile.className = 'project-mobile';
+  mobile.className = 'project-mobile m144';
   mobile.innerHTML = `
-    <header class="mobile-cover mobile-reveal">
-      <nav class="mobile-project-nav"><a href="../../index.html">${picture('ec69c.svg')}<span>Назад</span></a><span>Екатерина Жиркова</span></nav>
-      <h1>Додо Пицца</h1>
-      ${picture('0a785.png', 'class="mobile-cover-icon"')}
-      <div class="mobile-cover-phone">${picture('60058.png')}</div>
-    </header>
-    <section class="mobile-description">
-      <div class="mobile-intro mobile-reveal"><h2>описание проекта</h2><p>${caseText('описание проекта')}</p><a class="mobile-link-pill" href="https://www.figma.com/design/FHBGMOD15cEvTpsb3DM7at/Untitled?node-id=1-94" target="_blank" rel="noopener noreferrer">фигма</a></div>
-      <div class="mobile-opening-shot mobile-reveal">${picture('9d543.svg', 'class="mobile-opening-vector"')}${picture('8083c.png', 'class="mobile-opening-art"')}</div>
-      <div class="mobile-facts">${facts.map(fact => `<div class="mobile-fact mobile-reveal"><h3>${fact.title}</h3><p>${fact.body}</p></div>`).join('')}</div>
-    </section>
-    <section class="mobile-research">
-      <div class="mobile-benchmark mobile-reveal"><h2>Бенчмаркинг</h2><p>${caseText('Бенчмаркинг')}</p><div class="mobile-benchmark-track" tabindex="0" aria-label="Скриншоты сервисов, прокрутка по горизонтали">${['3baa5.png','a9be8.png','07be4.png','19ca1.png','62a68.png','7f576.png','1090e.png'].map(name => picture(name)).join('')}</div></div>
-      <div class="mobile-surveys mobile-reveal"><h2>Опросы</h2><p>${caseText('Опросы')}</p><div class="mobile-survey-results">${[['47%','Неудобно ждать, пока все определятся'],['77%','Хотят самостоятельно добавлять блюда'],['61%','Хотят оплачивать только свою часть заказа'],['72%','Считают общую корзину полезной']].map(([number,label]) => `<div class="mobile-survey-result"><strong>${number}</strong><div class="mobile-survey-bar"><i style="width:${number}"></i></div><span>${label}</span></div>`).join('')}</div><p class="mobile-survey-conclusion">${desktop.querySelector('.survey-conclusion')?.textContent || ''}</p><button class="mobile-link-pill" type="button">результаты опроса</button></div>
-    </section>
-    <section class="mobile-hypotheses"><h2 class="mobile-reveal">Гипотезы и решения</h2>
-      ${chipSection('Онбординг', caseText('Онбординг'), shot('shot-onboarding', 'e5a7a.svg', ['86a1c.png','4d5c9.png','f5ac1.png']))}
-      <div class="mobile-shot shot-onboarding-extra mobile-reveal">${picture('19b2f.svg', 'class="mobile-shot-vector"')}${phones(['d95d8.png','3bba2.png'])}</div>
-    </section>
-    ${chipSection('Точки входа', caseText('Точки входа'), `<div class="mobile-shot shot-entry">${picture('1ccd7.svg','class="mobile-shot-vector"')}${phones(['6e5a6.png','4da0b.png'])}${picture('66732.png','class="shot-entry-story"')}${picture('0a9fb.png','class="shot-entry-banner"')}${picture('2ece9.png','class="shot-entry-promo"')}</div>`)}
-    ${chipSection('Создание корзины', caseText('Создание корзины'), shot('shot-create', '500e4.svg', ['ba44e.png','e0cdb.png','c39dd.png']))}
-    ${chipSection('Приглашение', caseText('Приглашение'), shot('shot-invite', 'a940c.svg', ['6739b.png','5ca8f.png'], `<span class="mobile-callout invite-active">Активная<br>ссылка</span><span class="mobile-callout invite-inactive">Неактивная<br>ссылка</span>${picture('a6b30.svg','class="mobile-arrow invite-arrow-left"')}${picture('bc20d.svg','class="mobile-arrow invite-arrow-right"')}`))}
-    ${chipSection('Общая корзина', caseText('Общая корзина'), shot('shot-basket', '6a6ab.svg', ['57ea4.png','22f99.png'], `<span class="mobile-callout basket-hidden">Скрытый список участников</span><span class="mobile-callout basket-open">Раскрытый список участников</span>${picture('891b9.svg','class="mobile-arrow basket-arrow-left"')}${picture('99e79.svg','class="mobile-arrow basket-arrow-right"')}`))}
-    <section class="mobile-payment">
-      ${chipSection('Раздельная оплата', caseText('Раздельная оплата'), shot('shot-split', '317be.svg', ['fb63d.png','d5fe8.png']))}
-      ${chipSection('Оплата создателем', caseText('Оплата создателем').replace('отправить напоминание', 'отправить<br class="owner-mobile-break">напоминание').replace('этих участников', 'этих<br class="owner-mobile-break">участников'), shot('shot-owner', '59e3d.svg', ['ee861.png','a31f1.png'], `<span class="mobile-callout owner-user">Участник</span><span class="mobile-callout owner-creator">Создатель</span>${picture('891b9.svg','class="mobile-arrow owner-arrow-left"')}${picture('99e79.svg','class="mobile-arrow owner-arrow-right"')}`))}
-    </section>
-    ${chipSection('Напоминания', caseText('Напоминания'), `<div class="mobile-shot shot-reminders">${picture('f8106.svg','class="mobile-shot-vector"')}<div class="reminder-screen reminder-screen-top">${picture('adb4a.png')}</div><div class="reminder-screen reminder-screen-bottom">${picture('28428.png')}</div>${picture('94f0e.png','class="reminder-notification reminder-first"')}${picture('3f1c4.png','class="reminder-notification reminder-second"')}<span class="mobile-callout reminder-split">Раздельная оплата</span><span class="mobile-callout reminder-owner">Оплата создателем</span>${picture('a6b30.svg','class="mobile-arrow reminder-arrow-left"')}${picture('43403.svg','class="mobile-arrow reminder-arrow-right"')}</div>`)}
-    <footer class="mobile-project-footer mobile-reveal"><p>Буду рада стать частью вашей команды!</p><nav><a href="../../assets/ekaterina-zhirkova-resume.pdf" target="_blank" rel="noopener noreferrer">CV</a><a href="https://t.me/eekaterinass" target="_blank" rel="noopener noreferrer">Telegram</a><button class="email-copy" type="button" aria-label="Скопировать адрес электронной почты"><span class="email-address">zhirkovakatya190517@yandex.ru</span><span class="copy-pill" aria-hidden="true">Copy</span></button></nav></footer>
-  `;
+    <header class="m144-header"><a href="../../index.html"><img src="${vec('54708')}" alt="">Назад</a><span>Екатерина Жиркова</span></header>
+    <section class="m144-hero"><div class="m144-project-label">${img('0a785')}<span><b>Додо Пицца</b><small>case study, 2026</small></span></div><h1>Совместный заказ</h1><p>${desktop.querySelector('.case129-intro>p').textContent.trim()}</p><a class="m144-figma" href="${desktop.querySelector('.case129-figma').href}" target="_blank" rel="noopener noreferrer"><img src="../../assets/project1-figma-icon.png" alt="">посмотреть в фигме</a></section>
+    <div class="m144-cover-scroll"><div class="m144-cover"><img class="is-current" src="../../assets/project1-cover-phone-hi.webp" alt=""><img src="../../assets/home-card-hover-1.png" alt=""><img src="../../assets/home-card-hover-2.png" alt=""></div></div>
+    <section class="m144-about"><h2>О проекте</h2><div class="m144-facts">${facts}</div></section>
+    <section class="m144-benchmark"><h2>Бенчмаркинг</h2><p>${desktop.querySelector('.case129-research p').textContent.trim()}</p><div class="m144-benchmark-track">${['3baa5','a9be8','07be4','19ca1','62a68','7f576','1090e'].map(name=>img(name)).join('')}</div><div class="m144-benchmark-meta"><span>Листайте →</span><span class="m144-benchmark-count">01 / 07</span></div></section>
+    <section class="m144-survey"><h2>Опросы</h2><div class="m144-survey-copy">${[...desktop.querySelectorAll('.case129-survey>p')].map(el=>`<p>${el.textContent.trim()}</p>`).join('')}</div><div class="m144-stats">${survey}</div></section>
+    <section class="m144-hypotheses"><h2>Гипотезы и решения</h2><div class="m144-solution"><h3>Онбординг</h3><p>${desktop.querySelector('.case129-hypotheses p').textContent.trim()}</p>${card('onboard',phones(['86a1c','f5ac1','4d5c9']),'f010a')}${card('onboard-two',phones(['3bba2','d95d8']),'a27e9')}</div></section>
+    ${solution('Точки входа',card('entry',phones(['6e5a6','4da0b'])+img('0ee6f','m144-entry-story')+`<span class="m144-entry-banner"><strong>Заказывайте вместе!</strong><small>Создайте общую корзину и заказывайте вместе</small><img src="../../assets/project1-entry-basket.png" alt=""></span>`,'01491'))}
+    ${solution('Создание корзины',card('create',phones(['ba44e','e0cdb','c39dd']),'99a30'))}
+    ${solution('Приглашение',card('invite',phones(['6739b','5ca8f'])+callout('Активная<br>ссылка','m144-invite-left','5672f')+callout('Неактивная<br>ссылка','m144-invite-right','98f39')))}
+    ${solution('Общая корзина',card('basket',phones(['57ea4','22f99'])+callout('Скрытый список участников','m144-basket-left','b11d1')+callout('Раскрытый список участников','m144-basket-right','1d243')))}
+    ${solution('Дополнительный статус',card('additional',phones(['fb63d','d5fe8']),'5295e'))}
+    ${solution('Оплата создателем',card('owner',phones(['ee861','a31f1'])+callout('Участник','m144-owner-left','b11d1')+callout('Создатель','m144-owner-right','1d243')))}
+    ${solution('Напоминания',card('reminder',`<div class="m144-reminder-screens">${img('adb4a')}${img('28428')}</div><div class="m144-notice m144-notice-one">${img('0a785')}<span><b>Оплатите до 07:53 PM</b><small>Чтобы сохранить выбранное время доставки</small></span><time>07:43 PM</time></div><div class="m144-notice m144-notice-two">${img('0a785')}<span><b>Пора завершать заказ</b><small>Екатерина ждёт вас в совместном заказе</small></span><time>9:41 AM</time></div>${callout('Раздельная оплата','m144-reminder-left','5672f')}${callout('Оплата создателем','m144-reminder-right','f4e49')}`))}
+    <footer class="m144-footer"><div><p>Буду рада стать частью<br> вашей команды!</p><a href="mailto:zhirkovakatya190517@yandex.ru" aria-label="Написать Екатерине"><img src="${vec('2c461')}" alt=""></a></div><span>Екатерина Жиркова</span></footer>`;
   desktop.after(mobile);
-  const preference = matchMedia('(prefers-reduced-motion: reduce)');
-  if (preference.matches || !('IntersectionObserver' in window)) mobile.querySelectorAll('.mobile-reveal').forEach(el => el.classList.add('is-visible'));
-  else {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } });
-    }, { threshold: .08, rootMargin: '0px 0px 35px 0px' });
-    mobile.querySelectorAll('.mobile-reveal').forEach(el => observer.observe(el));
-  }
+  const coverScroll = mobile.querySelector('.m144-cover-scroll');
+  const coverImages = [...mobile.querySelectorAll('.m144-cover img')];
+  const updateCover = () => {
+    if (innerWidth > 700 || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const pinTop = (innerHeight - mobile.querySelector('.m144-cover').offsetHeight) / 2;
+    const progress = Math.max(0, Math.min(1, (pinTop - coverScroll.getBoundingClientRect().top) / 440));
+    const frame = progress < .38 ? 0 : progress < .68 ? 1 : 2;
+    coverImages.forEach((image, index) => image.classList.toggle('is-current', index === frame));
+    mobile.querySelector('.m144-cover').style.setProperty('--cover-scale', String(1 + .03 * Math.min(1, progress / .24)));
+  };
+  window.addEventListener('scroll', updateCover, {passive:true});
+  window.addEventListener('resize', updateCover);
+  updateCover();
+  const track = mobile.querySelector('.m144-benchmark-track');
+  const count = mobile.querySelector('.m144-benchmark-count');
+  track.addEventListener('scroll', () => { const step = track.querySelector('img').getBoundingClientRect().width + 16; count.textContent = `${String(Math.min(7,Math.round(track.scrollLeft/step)+1)).padStart(2,'0')} / 07`; }, {passive:true});
+  const observer = new IntersectionObserver(entries => { if(entries.some(e=>e.isIntersecting)){mobile.querySelector('.m144-stats').classList.add('is-visible');observer.disconnect();} },{threshold:.2});
+  observer.observe(mobile.querySelector('.m144-stats'));
 })();

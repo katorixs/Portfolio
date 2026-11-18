@@ -34,7 +34,7 @@
   root.innerHTML = `
     <header class="case129-header"><a href="../../index.html" aria-label="Назад на главную"><span class="case129-back">‹</span> Назад</a><span>Екатерина Жиркова</span></header>
     ${at(180,130,`<div class="case129-title"><img src="${asset('0a785.png')}" alt=""><span><b>Додо Пицца</b><small>case study, 2026</small></span></div><h1>Совместный заказ</h1><p>Учебный проект по разработке фичи совместного заказа в приложении доставки еды Додо Пицца, которая позволяет создавать общую корзину, приглашать друзей, добавлять товары каждому участнику и выбирать удобный способ оплаты – за всех или каждый за себя</p><a class="case129-figma" target="_blank" rel="noopener noreferrer" href="https://www.figma.com/design/EmcM6BuNpGsSieiQiuiYVW/%D0%94%D0%BE%D0%B4%D0%BE-%D0%9F%D0%B8%D1%86%D1%86%D0%B0-%D0%9A%D0%B5%D0%B9%D1%81?node-id=1-12569&t=W89phi8FiZFuYzn0-1"><img class="case129-figma-symbol" src="../../assets/project1-figma-icon.png" alt="">посмотреть в фигме</a>`,'case129-intro')}
-    ${at(723,30,`<div class="case129-cover-glow"></div><img src="../../assets/project-1-cover-phone.webp" alt="Макет совместного заказа Додо Пиццы">`,'case129-cover')}
+    ${at(723,30,`<div class="case129-cover-glow"></div><img src="../../assets/project1-cover-phone-hi.webp" alt="Макет совместного заказа Додо Пиццы">`,'case129-cover')}
     ${at(1502,130,`<h2>О проекте</h2><div class="case129-facts">${facts.map(([title,body])=>`<div class="case129-fact"><h3>${title}</h3><p>${body}</p></div>`).join('')}</div>`,'case129-about')}
     ${at(2302,130,text('Бенчмаркинг','В ходе анализа российского рынка не было найдено сервисов доставки с полноценной функцией совместного заказа, поэтому в качестве референса рассмотрена Яндекс Лавка, где можно поделиться собранной корзиной. Также были изучены зарубежные сервисы доставки, поддерживающие групповые заказы – Wolt и Uber Eats'),'case129-research')}
     ${at(2566,0,`<div class="case129-benchmark-track">${['3baa5.png','a9be8.png','07be4.png','19ca1.png','62a68.png','7f576.png','1090e.png'].map(n=>image(n)).join('')}</div>`,'case129-benchmark')}
@@ -58,18 +58,6 @@
     ${shot(12500,'case129-soft',phone('adb4a.png',475,-143,271,583)+phone('28428.png',475,460,271,580)+notification('Пора завершать заказ','Екатерина ждёт вас в совместном заказе','9:41 AM',409,623)+notification('Оплатите до 07:53 PM','Чтобы сохранить выбранное время доставки','07:43 PM',409,280)+label('Раздельная оплата',108,338)+arrow('reminder1',186,161,231,211,120,204,'rotate(55.1deg) scaleY(-1)')+label('Оплата создателем',929,662)+arrow('reminder2',812,517,198,155,87,176,'rotate(128.39deg) scaleY(.99) skewX(6.98deg)'))}
     ${at(13363,30,`<p>Буду рада стать частью вашей команды! <a href="mailto:zhirkovakatya190517@yandex.ru" aria-label="Написать Екатерине Жирковой по электронной почте"><img src="../../assets/home-96-footer-bubble.svg" alt=""></a></p>`,'case129-footer')}
   `;
-  // The reference row extends beyond the frame; wheel gestures move it horizontally.
-  const row = root.querySelector('.case129-benchmark');
-  row.addEventListener('wheel', event => {
-    if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
-      const limit = row.scrollWidth - row.clientWidth;
-      const next = Math.max(0, Math.min(limit, row.scrollLeft + event.deltaY));
-      if (next !== row.scrollLeft) {
-        row.scrollLeft = next;
-        event.preventDefault();
-      }
-    }
-  }, {passive:false});
   const surveyGrid = root.querySelector('.case129-survey-grid');
   const surveyObserver = new IntersectionObserver(entries => {
     if (entries.some(entry => entry.isIntersecting)) {
@@ -78,14 +66,78 @@
     }
   }, {threshold: 0.2});
   surveyObserver.observe(surveyGrid);
+  // The cover owns a scroll-length stage; following sections keep their original spacing.
+  const baseHeight = 13548;
+  const cover = root.querySelector('.case129-cover');
+  const following = [...root.querySelectorAll('.case129-block')].filter(el => el !== cover && parseFloat(el.style.top) > 723);
+  for (const el of following) el.dataset.baseTop = parseFloat(el.style.top);
+  const stage = document.createElement('div');
+  stage.className = 'case129-cover-stage';
+  stage.setAttribute('aria-hidden', 'true');
+  stage.innerHTML = `<div class="case129-cover-stage-glow"></div><img class="case129-cover-stage-image is-current" src="../../assets/project1-cover-phone-hi.webp" alt=""><img class="case129-cover-stage-image" src="../../assets/home-card-hover-1.png" alt=""><img class="case129-cover-stage-image" src="../../assets/home-card-hover-2.png" alt="">`;
+  document.body.appendChild(stage);
+  const stageImages = [...stage.querySelectorAll('.case129-cover-stage-image')];
+  let stageStart = 0;
+  let stageEnd = 0;
+  let stageExtra = 0;
+  let stageDesignHeight = baseHeight;
+  let coverRectAtStart = null;
+  const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+  const updateStage = () => {
+    if (window.innerWidth <= 700 || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      stage.classList.remove('is-active');
+      cover.style.visibility = '';
+      return;
+    }
+    const y = window.scrollY;
+    const active = y >= stageStart && y < stageEnd + innerHeight;
+    stage.classList.toggle('is-active', active);
+    cover.style.visibility = y >= stageStart ? 'hidden' : '';
+    if (!active) return;
+    const progress = clamp((y - stageStart) / stageExtra, 0, 1);
+    const grow = clamp(progress / 0.24, 0, 1);
+    const smooth = grow * grow * (3 - 2 * grow);
+    const start = coverRectAtStart;
+    const targetWidth = Math.min(innerWidth - 24, start.width * 1.03);
+    const targetHeight = start.height * (targetWidth / start.width);
+    const targetX = (innerWidth - targetWidth) / 2;
+    const targetY = (innerHeight - targetHeight) / 2;
+    const x = start.x + (targetX - start.x) * smooth;
+    const top = start.y + (targetY - start.y) * smooth - Math.max(0, y - stageEnd);
+    const width = start.width + (targetWidth - start.width) * smooth;
+    const height = start.height + (targetHeight - start.height) * smooth;
+    stage.style.left = `${x}px`;
+    stage.style.top = `${top}px`;
+    stage.style.width = `${width}px`;
+    stage.style.height = `${height}px`;
+    stage.style.borderRadius = `${20 + 2 * smooth}px`;
+    const frame = progress < 0.38 ? 0 : progress < 0.68 ? 1 : 2;
+    stageImages.forEach((img, i) => img.classList.toggle('is-current', i === frame));
+    stage.style.opacity = '1';
+  };
+  const setupStage = () => {
+    const enabled = innerWidth > 700 && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const scale = innerWidth < 1280 ? innerWidth / 1280 : 1;
+    stageExtra = enabled ? Math.round(innerHeight * 1.05) : 0;
+    stageDesignHeight = baseHeight + stageExtra / scale;
+    root.style.height = `${stageDesignHeight}px`;
+    following.forEach(el => { el.style.top = `${Number(el.dataset.baseTop) + stageExtra / scale}px`; });
+    const rect = cover.getBoundingClientRect();
+    stageStart = Math.max(0, window.scrollY + rect.bottom - innerHeight);
+    stageEnd = stageStart + stageExtra;
+    coverRectAtStart = {x:rect.left,y:innerHeight - rect.height,width:rect.width,height:rect.height};
+    updateStage();
+  };
+  setupStage();
+  window.addEventListener('scroll', updateStage, {passive:true});
   const syncTabletHeight = () => {
     const app = document.querySelector('#app');
     const tablet = window.innerWidth > 700 && window.innerWidth < 1280;
     const scale = window.innerWidth / 1280;
-    app.style.height = tablet ? `${13548 * scale}px` : '';
+    app.style.height = tablet ? `${stageDesignHeight * scale}px` : '';
     root.querySelector('.case129-footer').style.transform = tablet ? `scale(${1 / scale})` : '';
     root.querySelector('.case129-footer').style.transformOrigin = tablet ? 'top left' : '';
   };
   syncTabletHeight();
-  window.addEventListener('resize', syncTabletHeight);
+  window.addEventListener('resize', () => { setupStage(); syncTabletHeight(); });
 })();
